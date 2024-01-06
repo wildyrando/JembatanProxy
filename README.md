@@ -16,3 +16,6 @@ Command di atas hanya mendukung untuk sistem operasi berbasis debian dan rhel
 wget -O /usr/bin/jembatanproxy 'https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/jembatanproxy'
 chmod +x /usr/bin/jembatanproxy
 ```
+
+# Lisensi
+This Project Licensed Under The MIT License
