@@ -82,7 +82,7 @@ function runner() {
   elif [[ $1 == "--v6" ]]; then
       export type="ipv6"
   else
-      usage_ # invalid command
+      usage_ # perintah salah
   fi
 
   if [[ $2 == "--proxy" ]]; then
