@@ -71,7 +71,7 @@ function runner() {
     if [[ $test6 == "BERHASIL" ]]; then
       echo "Koneksi IPv6 Berhasil"
     else
-      echo "Koneksi IPv6 Gagal
+      echo "Koneksi IPv6 Gagal"
     fi
 
     exit # exit from program
@@ -96,7 +96,7 @@ function runner() {
 
     setroute4 $3 $4 # >> set route
 
-    echo "Proxy telah di setting sebagai global untuk menerima traffic http dan https\nUntuk melakukan pengecekan apakah berjalan atau tidak silakan jalan perintah di bawah ini\njembatanproxy --test"
+    echo -e $"Proxy telah di setting sebagai global untuk menerima traffic http dan https\nUntuk melakukan pengecekan apakah berjalan atau tidak silakan jalan perintah di bawah ini\njembatanproxy --test"
   else
       usage_ # invalid command
   fi
