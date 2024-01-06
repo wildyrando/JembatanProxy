@@ -18,17 +18,17 @@ fi
 
 # >> Check installation command
 if command -V apt > /dev/null 2>&1; then
-  alias SEPUH="apt"
+  export SEPUH="apt"
 elif command -V dnf > /dev/null 2>&1; then
-  alias SEPUH="dnf"
+  export SEPUH="dnf"
 else
   echo "Script ini tidak mendukung os anda, silakan install iptables dan requirements secara manual"
   exit
 fi
 
 # >> Install
-SEPUH update -y; SEPUH upgrade -y
-SEPUH install iptables ip6tables -y
+$SEPUH update -y; $SEPUH upgrade -y
+$SEPUH install iptables ip6tables -y
 
 # >> Done
 echo "Installasi berhasil."
