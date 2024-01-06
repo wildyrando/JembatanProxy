@@ -8,6 +8,7 @@
 #
 #  This Project Licensed under MIT License
 #  https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/LICENSE
+#
 # ------------------------------------------------------------------------------
 
 # >> Check sudoer
@@ -104,4 +105,4 @@ function runner() {
   fi
 }
 
-runner # panggil runner
+runner $1 $2 $3 $4 $5 $6
