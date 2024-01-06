@@ -83,6 +83,7 @@ function runner() {
       export type="ipv6"
   else
       usage_ # perintah salah
+      exit
   fi
 
   if [[ $2 == "--proxy" ]]; then
@@ -99,6 +100,7 @@ function runner() {
     echo -e $"Proxy telah di setting sebagai global untuk menerima traffic http dan https\nUntuk melakukan pengecekan apakah berjalan atau tidak silakan jalan perintah di bawah ini\njembatanproxy --test"
   else
       usage_ # invalid command
+      exit
   fi
 }
 
