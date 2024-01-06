@@ -1,2 +1,2 @@
 # JembatanProxy
-JembatanProxy berfungsi untuk meneruskan koneksi 80/443 ke suatu proxy server
+JembatanProxy berfungsi untuk meneruskan traffic 80/443 ke suatu proxy server
