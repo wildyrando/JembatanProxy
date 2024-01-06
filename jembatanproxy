@@ -61,8 +61,8 @@ function runner() {
     version_
     exit
   elif [[ $1 == "--test" ]]; then
-    test4=$(wget --ipv4 -q -O- 'https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/test.rs')
-    test6=$(wget --ipv4 -q -O- 'https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/test.rs')
+    test4=$(wget -4 -q -O- 'https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/test.rs')
+    test6=$(wget -4 -q -O- 'https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/test.rs')
     if [[ $test4 == "BERHASIL" ]]; then
       echo "Koneksi IPv4 Berhasil"
     else
