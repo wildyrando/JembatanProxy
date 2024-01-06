@@ -101,3 +101,5 @@ function runner() {
       usage_ # invalid command
   fi
 }
+
+runner # panggil runner
