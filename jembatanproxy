@@ -1,0 +1,87 @@
+#!/bin/bash
+
+# >> Check sudoer
+if ! [[ $(whoami) == "root" ]]; then
+  echo "Silakan jalankan sebagai user root"
+  exit
+fi
+
+# >> Check iptables
+if ! command -V iptables > /dev/null 2>&1; then
+  echo "iptables tidak terinstall."
+  exit
+fi
+
+function setroute4() {
+  sudo iptables -t nat -A OUTPUT -p tcp --dport 80 -j DNAT --to-destination $1:$2 -m comment --comment "JEMBATANPROXY1"
+  sudo iptables -t nat -A OUTPUT -p tcp --dport 443 -j DNAT --to-destination $1:$2 -m comment --comment "JEMBATANPROXY2"
+}
+
+function delroute4() {
+  sudo iptables -t nat -D OUTPUT $(sudo iptables -t nat -L OUTPUT --line-numbers | grep "JEMBATANPROXY1" | awk '{print $1}') || true
+  sudo iptables -t nat -D OUTPUT $(sudo iptables -t nat -L OUTPUT --line-numbers | grep "JEMBATANPROXY2" | awk '{print $1}') || true
+}
+
+function usage_() {
+echo "
+Usage: jembatanproxy --v4 --proxy ip port
+
+    --v4             = Untuk trafic dengan protocol IPv4
+    --v6             = Untuk trafic dengan protocol IPv6
+    --version        = Menampilkan versi yang terinstall
+    --test           = Test status program
+
+"
+}
+
+function version_() {
+  echo -e $"JembatanProxy - 1.0.0\nAuthor: Wildy Sheverando <hai@wildyrando.com>\n"
+}
+
+function runner() {
+  # >> handle version
+  if [[ $1 == "--version" ]]; then
+    version_
+    exit
+  elif [[ $1 == "--test" ]]; then
+    test4=$(wget --ipv4 -q -O- 'https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/test.rs')
+    test6=$(wget --ipv4 -q -O- 'https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/test.rs')
+    if [[ $test4 == "BERHASIL" ]]; then
+      echo "Koneksi IPv4 Berhasil"
+    else
+      echo "Koneksi IPv4 Gagal"
+    fi
+
+    if [[ $test6 == "BERHASIL" ]]; then
+      echo "Koneksi IPv6 Berhasil"
+    else
+      echo "Koneksi IPv6 Gagal
+    fi
+
+    exit # exit from program
+  fi
+
+  if [[ $1 == "--v4" ]]; then
+      export type="ipv4"
+  elif [[ $1 == "--v6" ]]; then
+      export type="ipv6"
+  else
+      usage_ # invalid command
+  fi
+
+  if [[ $2 == "--proxy" ]]; then
+    if [[ $3 == "" ]]; then
+      echo "Proxy yang digunakan tidak valid"
+      exit
+    elif [[ $4 == "" ]]; then
+      echo "Proxy yang digunakan tidak valid"
+      exit
+    fi
+
+    setroute4 $3 $4 # >> set route
+
+    echo "Proxy telah di setting sebagai global untuk menerima traffic http dan https\nUntuk melakukan pengecekan apakah berjalan atau tidak silakan jalan perintah di bawah ini\njembatanproxy --test"
+  else
+      usage_ # invalid command
+  fi
+}
