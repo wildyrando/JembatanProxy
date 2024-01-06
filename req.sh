@@ -28,7 +28,7 @@ fi
 
 # >> Install
 $SEPUH update -y; $SEPUH upgrade -y
-$SEPUH install iptables ip6tables -y
+$SEPUH install iptables -y
 
 # >> Done
 echo "Installasi berhasil."
