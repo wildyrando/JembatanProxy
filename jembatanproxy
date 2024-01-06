@@ -1,4 +1,14 @@
 #!/bin/bash
+#
+#  JembatanProxy
+#  Berfungsi untuk meneruskan traffic 80/443 ke suatu proxy server
+#
+#  Author : Wildy Sheverando <hai@wildyrando.com>
+#  Repo   : https://github.com/wildyrando/JembatanProxy
+#
+#  This Project Licensed under MIT License
+#  https://raw.githubusercontent.com/wildyrando/JembatanProxy/main/LICENSE
+# ------------------------------------------------------------------------------
 
 # >> Check sudoer
 if ! [[ $(whoami) == "root" ]]; then
